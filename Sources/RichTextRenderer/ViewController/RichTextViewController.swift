@@ -15,6 +15,8 @@ open class RichTextViewController: UIViewController, NSLayoutManagerDelegate {
         static let hrSuffix = "-hr"
     }
 
+    public var onContentSizeChanged: ((_ size: CGSize) -> Void)?
+
     /// Renderer of the `Contentful.RichTextDocument`.
     private let renderer: RichTextDocumentRenderer
 
@@ -157,6 +159,7 @@ open class RichTextViewController: UIViewController, NSLayoutManagerDelegate {
         }
 
         preferredContentSize = newContentSize
+        self.onContentSizeChanged?(textView.contentSize)
     }
 
     open override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
