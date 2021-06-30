@@ -98,6 +98,15 @@ open class RichTextViewController: UIViewController, NSLayoutManagerDelegate {
         textContainer.size.height = .greatestFiniteMagnitude
     }
 
+    public func set(textColor: UIColor?, backgroundColor: UIColor?, linkColor: UIColor?) {
+        DispatchQueue.main.async {
+            self.textView.textColor = textColor
+            self.textView.backgroundColor = backgroundColor
+            self.textView.tintColor = linkColor
+            self.view.backgroundColor = backgroundColor
+        }
+    }
+
     private func setupTextView() {
         textView = UITextView(frame: view.bounds, textContainer: textContainer)
         textView.textContainerInset = renderer.configuration.contentInsets
